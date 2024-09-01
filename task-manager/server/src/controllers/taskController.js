@@ -34,7 +34,8 @@ const taskService = async (req, res) => {
 const Updatetask = async (req, res) => {
     const { title, description, dueDate ,status } = req.body
     const user = await User.findByPk(req.authData.id);
-    const { id } = req.params
+    const { id } = req.params;
+    const io =  req.io
     if (!user) {
         return res.status(400).json({ message: "User not found" })
     }
@@ -46,6 +47,14 @@ const Updatetask = async (req, res) => {
 
     try {
         const taskCreate = await taskUpdateService(req.authData.id, id, title, description, dueDate , status);
+        const tasks = await Task.findAll({
+            include: {
+                model: User,
+                as: 'user',
+                attributes: ['id'],
+            },
+        });
+        io.emit('task', tasks);
         return res.status(201).json({
             message: "Update task successfully",
             taskCreate
@@ -88,14 +97,18 @@ const getOneTaskController = async (req, res) => {
 // Remove taks 
 const removeOneTaskController = async (req, res) => {
     const { id } = req.params
-    const user = await User.findByPk(req.authData.id);
-    const task = await Task.findByPk(id);
-    // Check if the authenticated user is the owner of the task
-    if (task.userId !== user.id) {
-        return res.status(403).json({ status: false, message: "You are not the owner of this task" });
-    }
+    
+    const io =  req.io
     try {
         const requestOneTask = await removeOneTask(id);
+        const tasks = await Task.findAll({
+            include: {
+                model: User,
+                as: 'user',
+                attributes: ['id'],
+            },
+        });
+        io.emit('task', tasks);
         return res.status(200).json({
             status: true,
             message: "Task details removed successfully",

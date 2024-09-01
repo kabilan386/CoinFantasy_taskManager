@@ -1,13 +1,32 @@
 // src/components/Table.js
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDeleteTaskMutation } from '../services/user';
+import { toast } from 'react-toastify';
+const Task = ({ data, status , reFetchCall }) => {
 
-const Task = ({ data, status }) => {
-
-  let navigate  = useNavigate();
-
+  let navigate = useNavigate();
+  const [deleteTaskAPI , resDeleteTask] = useDeleteTaskMutation()
   const navigateToEdit = (id) => navigate(`/edit-task/${id}`)
 
+  const deleteTask = (id) => {
+    deleteTaskAPI(id)
+  }
+
+  useEffect(() => {
+    if (resDeleteTask.isError) {
+      if (resDeleteTask.error?.data?.status === false) {
+        toast.error(resDeleteTask.error?.data?.message)
+      } else {
+        toast.error(JSON.stringify(resDeleteTask.error?.data?.errors[0]))
+      }
+    } else if (resDeleteTask.status === "fulfilled") {
+      toast.success(resDeleteTask.data.message);
+      reFetchCall()
+      navigate("/dashboard")
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [resDeleteTask])
   const All = () => {
     return (
       <>
@@ -17,7 +36,10 @@ const Task = ({ data, status }) => {
               <h5 className="mb-1"><button className='task-title' >{value?.title}</button></h5>
               <small className="text-muted">{value.status}</small>
             </div>
-            <button onClick={() => navigateToEdit(value?.id)} className="btn btn-outline-secondary">Edit</button>
+            <div className='d-flex justify-content-between align-items-center gap-1'>
+              <button onClick={() => navigateToEdit(value?.id)} className="btn btn-outline-secondary">Edit</button>
+              <button onClick={() => deleteTask(value?.id)} className="btn btn-outline-danger">Delete</button>
+            </div>
           </div>
         </div>)}
         {data?.length === 0 && "No task found"}
@@ -37,7 +59,10 @@ const Task = ({ data, status }) => {
               <h5 className="mb-1"><button className='task-title'>{value.title}</button></h5>
               <small className="text-muted">In Progress</small>
             </div>
-            <button onClick={() => navigateToEdit(value?.id)} className="btn btn-outline-secondary">Edit</button>
+            <div className='d-flex justify-content-between align-items-center gap-1'>
+              <button onClick={() => navigateToEdit(value?.id)} className="btn btn-outline-secondary">Edit</button>
+              <button onClick={() => deleteTask(value?.id)} className="btn btn-outline-danger">Delete</button>
+            </div>
           </div>
         </div>)}
 
@@ -58,7 +83,10 @@ const Task = ({ data, status }) => {
               <h5 className="mb-1"><button className='task-title'>{value.title}</button></h5>
               <small className="text-muted">Todo</small>
             </div>
-            <button onClick={() => navigateToEdit(value?.id)} className="btn btn-outline-secondary">Edit</button>
+            <div className='d-flex justify-content-between align-items-center gap-1'>
+              <button onClick={() => navigateToEdit(value?.id)} className="btn btn-outline-secondary">Edit</button>
+              <button onClick={() => deleteTask(value?.id)} className="btn btn-outline-danger">Delete</button>
+            </div>
           </div>
         </div>)}
 
@@ -79,7 +107,10 @@ const Task = ({ data, status }) => {
               <h5 className="mb-1"><button className='task-title'>{value.title}</button></h5>
               <small className="text-muted">Done</small>
             </div>
-            <button onClick={() => navigateToEdit(value?.id)} className="btn btn-outline-secondary">Edit</button>
+            <div className='d-flex justify-content-between align-items-center gap-1'>
+              <button onClick={() => navigateToEdit(value?.id)} className="btn btn-outline-secondary">Edit</button>
+              <button onClick={() => deleteTask(value?.id)} className="btn btn-outline-danger">Delete</button>
+            </div>
           </div>
         </div>)}
 
@@ -93,7 +124,7 @@ const Task = ({ data, status }) => {
 
       {status === "All" && All()}
       {status === "InProgress" && Progress()}
-      {status === "Todo" &&  Todo()}
+      {status === "Todo" && Todo()}
       {status === "Done" && Done()}
 
 

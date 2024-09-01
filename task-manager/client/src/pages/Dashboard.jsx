@@ -31,6 +31,10 @@ const Dashboard = () => {
     }
   }, [getAllTask])
 
+  const reFetchCall = () => {
+    getAllTask.refetch()
+  }
+
   return (
     <div className='container-fluid'>
       <Header />
@@ -58,7 +62,7 @@ const Dashboard = () => {
 
 
             {/* <!-- Task Cards --> */}
-            <Task data={task} status={status} />
+            <Task data={task} status={status} reFetchCall={reFetchCall} />
           </main>
         </div>
       </div>

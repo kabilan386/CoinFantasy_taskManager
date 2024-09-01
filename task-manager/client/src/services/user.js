@@ -63,6 +63,16 @@ export const userApi = createApi({
                 },
             }),
         }),
+        deleteTask: builder.mutation({
+            query: (id) => ({
+                url: `/task/${id}`,
+                method: 'DELETE',
+                headers: {
+                    // Assuming you have a way to get the token, you can add it here
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            }),
+        }),  
     }),
 })
 
@@ -74,5 +84,6 @@ export const {
     useServiceMutation,
     useGetRequestTaskQuery,
     useGetOneTaskQuery,
-    useUpdateTaskMutation
+    useUpdateTaskMutation,
+    useDeleteTaskMutation
 } = userApi
