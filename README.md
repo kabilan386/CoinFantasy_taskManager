@@ -68,6 +68,11 @@ yarn run build
 ```
 
 ## Running the Application with Docker-compose
+
+#### Mysql changes 
+
+change mysql host configuration on server and docker compose before run docker compose up
+
 ```bash
 cd task-manager
 docker-compose up --build
