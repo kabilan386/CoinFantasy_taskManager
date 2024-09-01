@@ -37,12 +37,20 @@
   padding: 0;
 }
 
-@media (max-width: 767.98px) {
+.navbar-nav{
+  width: 50%;
+}
+
+@media (max-width: 990px) {
   .sidebar {
     min-height: auto;
     padding: 0.5rem;
   }
+  .navbar-nav{
+    width: 100%;
+  }
   .search-box{
     margin: 10px 0px;
+    width: 100%;
   }
 }

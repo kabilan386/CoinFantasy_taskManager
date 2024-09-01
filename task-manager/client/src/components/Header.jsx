@@ -12,7 +12,7 @@ const Header = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                
-                <Nav className="ms-auto w-50">
+                <Nav className="ms-auto">
                     {/* <!-- Search Box --> */}
                     <div className="input-group search-box">
                         <input type="text" className="form-control " placeholder="Search tasks..." />
