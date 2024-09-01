@@ -1,0 +1,40 @@
+.content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.form-error {
+  color: red;
+  padding: 7px 6px;
+}
+
+.sidebar {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  min-height: 90vh;
+}
+.task-card {
+  border: 1px solid #e2e6ea;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.search-box{
+  margin: 0px 10px;
+}
+
+.h-80vh {
+  height: 80vh;
+}
+
+@media (max-width: 767.98px) {
+  .sidebar {
+    min-height: auto;
+    padding: 0.5rem;
+  }
+  .search-box{
+    margin: 10px 0px;
+  }
+}
