@@ -31,6 +31,7 @@ To install node_module
 
 ```bash 
 # use server file for run backend
+cd server
 npm install 
 ```
 To run user backend for development 
@@ -47,6 +48,7 @@ npm run start
 file path for admin UI : client
 
 ```bash
+cd client
 yarn install 
 ```
 
