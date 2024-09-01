@@ -77,7 +77,8 @@ docker-compose up --build
 ```bash
 docker-compose down
 ```
-
+## Live deployed application URL
+https://coin-fantasy-task-manager.vercel.app/
 
 ##### info 
 if you have any queries for testing purpose. Please contact to me kabilankabi386@gmail.com
