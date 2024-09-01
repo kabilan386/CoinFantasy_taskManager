@@ -14,7 +14,7 @@ const Task = ({ data, status }) => {
         {data?.map((value, index) => <div key={index} className="task-card">
           <div className="d-flex justify-content-between align-items-center">
             <div>
-              <h5 className="mb-1"><a href="#">{value?.title}</a></h5>
+              <h5 className="mb-1"><button className='task-title' >{value?.title}</button></h5>
               <small className="text-muted">{value.status}</small>
             </div>
             <button onClick={() => navigateToEdit(value?.id)} className="btn btn-outline-secondary">Edit</button>
@@ -34,7 +34,7 @@ const Task = ({ data, status }) => {
         {progressData?.map((value, index) => <div key={index} className="task-card">
           <div className="d-flex justify-content-between align-items-center">
             <div>
-              <h5 className="mb-1"><a href="#">{value.title}</a></h5>
+              <h5 className="mb-1"><button className='task-title'>{value.title}</button></h5>
               <small className="text-muted">In Progress</small>
             </div>
             <button onClick={() => navigateToEdit(value?.id)} className="btn btn-outline-secondary">Edit</button>
@@ -55,7 +55,7 @@ const Task = ({ data, status }) => {
         {progressData?.map((value, index) => <div key={index} className="task-card">
           <div className="d-flex justify-content-between align-items-center">
             <div>
-              <h5 className="mb-1"><a href="#">{value.title}</a></h5>
+              <h5 className="mb-1"><button className='task-title'>{value.title}</button></h5>
               <small className="text-muted">Todo</small>
             </div>
             <button onClick={() => navigateToEdit(value?.id)} className="btn btn-outline-secondary">Edit</button>
@@ -76,7 +76,7 @@ const Task = ({ data, status }) => {
         {progressData?.map((value, index) => <div key={index} className="task-card">
           <div className="d-flex justify-content-between align-items-center">
             <div>
-              <h5 className="mb-1"><a href="#">{value.title}</a></h5>
+              <h5 className="mb-1"><button className='task-title'>{value.title}</button></h5>
               <small className="text-muted">Done</small>
             </div>
             <button onClick={() => navigateToEdit(value?.id)} className="btn btn-outline-secondary">Edit</button>
