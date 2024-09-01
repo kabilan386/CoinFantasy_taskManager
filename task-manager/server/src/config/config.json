@@ -1,23 +1,23 @@
 {
   "development": {
-    "username": "root",
-    "password": "password",
-    "database": "task_manage",
-    "host": "mysql",
+    "username": "u9zc6gse2on73nrq",
+    "password": "5trqpukHjhkjRiouuCR0",
+    "database": "bparcum4vaubczrh7wcm",
+    "host": "bparcum4vaubczrh7wcm-mysql.services.clever-cloud.com",
     "dialect": "mysql"
   },
   "test": {
-    "username": "root",
-    "password": "password",
-    "database": "task_manage",
-    "host": "mysql",
+    "username": "u9zc6gse2on73nrq",
+    "password": "5trqpukHjhkjRiouuCR0",
+    "database": "bparcum4vaubczrh7wcm",
+    "host": "bparcum4vaubczrh7wcm-mysql.services.clever-cloud.com",
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": "password",
-    "database": "task_manage",
-    "host": "mysql",
+    "username": "u9zc6gse2on73nrq",
+    "password": "5trqpukHjhkjRiouuCR0",
+    "database": "bparcum4vaubczrh7wcm",
+    "host": "bparcum4vaubczrh7wcm-mysql.services.clever-cloud.com",
     "dialect": "mysql"
   }
 }
